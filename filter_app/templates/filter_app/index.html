@@ -2,44 +2,74 @@
 {% block title %} <title>Filter Reviews</title> {% endblock %}
 {% block content %}
     <div class="container">
-        <h1 id="title-main">Filter Reviews</h1>
-        <form>
-            <div>
-                <h5>Order by rating:</h5>
-                <select class="form-select" aria-label="Default select example">
-                  <option selected value="highest">Highest First</option>
-                  <option value="lowest">Lowest First</option>
-                </select>
-            </div>
+        <div class="container-form">
+            <h1 id="title-main">Filter Reviews</h1>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div>
+                    <h5>Order by rating:</h5>
+                    <select class="form-select" name="rating" aria-label="Default select example">
+                      <option selected value="highest">Highest First</option>
+                      <option value="lowest">Lowest First</option>
+                    </select>
+                </div>
+                <br>
+                <div>
+                    <h5>Minimum rating:</h5>
+                    <select class="form-select" name="min-rating" aria-label="Default select example">
+                      <option selected value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
+                </div>
+                <br>
+                <div>
+                    <h5>Order by date:</h5>
+                    <select class="form-select" name="date-review" aria-label="Default select example">
+                      <option selected value="oldest">Oldest First</option>
+                      <option value="newest">Newest First</option>
+                    </select>
+                </div>
+                <br>
+                <div>
+                    <h5>Prioritize by text:</h5>
+                    <select class="form-select" name="review-text" aria-label="Default select example">
+                      <option selected value="yes">Yes</option>
+                      <option value="no">No</option>
+                    </select>
+                </div>
+                <br>
+                <input type="submit" value="Filter" class="btn btn-primary"></input>
+            </form>
             <br>
-            <div>
-                <h5>Minimum rating:</h5>
-                <select class="form-select" aria-label="Default select example">
-                  <option selected value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </select>
-            </div>
-            <br>
-            <div>
-                <h5>Order by date:</h5>
-                <select class="form-select" aria-label="Default select example">
-                  <option selected value="oldest">Oldest First</option>
-                  <option value="newest">Newest First</option>
-                </select>
-            </div>
-            <br>
-            <div>
-                <h5>Prioritize by text:</h5>
-                <select class="form-select" aria-label="Default select example">
-                  <option selected value="yes">Yes</option>
-                  <option value="no">No</option>
-                </select>
-            </div>
-            <br>
-            <button type="button" class="btn btn-primary">Filter</button>
-        </form>
+        </div>
+        <div class="table-results">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Review ID</th>
+                  <th scope="col">Rating</th>
+                  <th scope="col">Review</th>
+                  <th scope="col">Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for review in data %}
+                    <tr>
+                      <th scope="row">{{ forloop.counter }}</th>
+                      <td>{{ review.id }}</td>
+                      <td>{{ review.rating }}</td>
+                      <td>{{ review.reviewText }}</td>
+                      <td>{{ review.reviewCreatedOnDate }}</td>
+                    </tr>
+                {% endfor %}
+
+
+              </tbody>
+            </table>
+        </div>
     </div>
 {% endblock %}

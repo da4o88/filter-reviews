@@ -1,14 +1,18 @@
-def sortByText(data_list, text):
+def sortByText(data_list, text='no', min_rating=1):
     no_text_list = []
     text_list = []
     new_list = []
 
     if text == 'yes':
         for data in data_list:
-            if len(data['reviewText']) == 0:
+            if len(data['reviewText']) == 0 and int(data['rating']) >= min_rating:
                 no_text_list.append(data)
-            else:
+            elif int(data['rating']) >= min_rating:
                 text_list.append(data)
+    elif text == 'no':
+        for data in data_list:
+            if int(data['rating']) >= min_rating:
+                no_text_list.append(data)
 
     if text == 'no':
         new_list = data_list
@@ -29,5 +33,12 @@ def sortByRating(lists, rating):
     return lists
 
 
-def sortByDate():
-    pass
+def sortByDate(dates):
+    # print(dates)
+    for i in range(len(dates)):
+        init_dates = dates[i]
+        init_dates.sort(key=lambda x: x['reviewCreatedOnDate'])
+        dates[i] = init_dates
+
+    return dates
+
