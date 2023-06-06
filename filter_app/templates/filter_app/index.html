@@ -1,0 +1,45 @@
+{% extends 'filter_app/base.html' %}
+{% block title %} <title>Filter Reviews</title> {% endblock %}
+{% block content %}
+    <div class="container">
+        <h1 id="title-main">Filter Reviews</h1>
+        <form>
+            <div>
+                <h5>Order by rating:</h5>
+                <select class="form-select" aria-label="Default select example">
+                  <option selected value="highest">Highest First</option>
+                  <option value="lowest">Lowest First</option>
+                </select>
+            </div>
+            <br>
+            <div>
+                <h5>Minimum rating:</h5>
+                <select class="form-select" aria-label="Default select example">
+                  <option selected value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+            </div>
+            <br>
+            <div>
+                <h5>Order by date:</h5>
+                <select class="form-select" aria-label="Default select example">
+                  <option selected value="oldest">Oldest First</option>
+                  <option value="newest">Newest First</option>
+                </select>
+            </div>
+            <br>
+            <div>
+                <h5>Prioritize by text:</h5>
+                <select class="form-select" aria-label="Default select example">
+                  <option selected value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+            </div>
+            <br>
+            <button type="button" class="btn btn-primary">Filter</button>
+        </form>
+    </div>
+{% endblock %}
