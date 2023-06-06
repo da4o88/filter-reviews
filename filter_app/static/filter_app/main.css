@@ -1,0 +1,19 @@
+body {
+    background: #f4f4f4;
+}
+
+.container {
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+.container h5 {
+    font-size: 1.15rem;
+    font-color: #212529;
+}
+
+#title-main {
+    margin-bottom: 25px;
+}
