@@ -39,12 +39,49 @@ def sortByRating(lists, rating, text):
     return lists
 
 
-def sortByDate(dates):
-    # print(dates)
-    for i in range(len(dates)):
-        init_dates = dates[i]
-        init_dates.sort(key=lambda x: x['reviewCreatedOnDate'])
-        dates[i] = init_dates
+def sortByDate(dates, text, rating, review_date):
+
+    if text == 'yes':
+        for i in range(len(dates)):
+            dates[i] = dateSorting(dates[i], rating, review_date)
+    elif text == 'no':
+        dates = dateSorting(dates, rating, review_date)
 
     return dates
 
+
+def dateSorting(reviews, ratings, review_date):
+    rating_5 = []
+    rating_4 = []
+    rating_3 = []
+    rating_2 = []
+    rating_1 = []
+    sort_dates = [rating_5, rating_4, rating_3, rating_2, rating_1]
+    sorted_dates = []
+
+    for data in reviews:
+        if data['rating'] == 5:
+            rating_5.append(data)
+        elif data['rating'] == 4:
+            rating_4.append(data)
+        elif data['rating'] == 3:
+            rating_3.append(data)
+        elif data['rating'] == 2:
+            rating_2.append(data)
+        elif data['rating'] == 1:
+            rating_1.append(data)
+
+    # Change order of list from highest to lowest
+    if ratings == 'lowest':
+        sort_dates.reverse()
+
+    # Sort by date
+    for rating in sort_dates:
+        if review_date == 'newest':
+            rating.sort(reverse=True, key=lambda x: x['reviewCreatedOnDate'])
+            sorted_dates += rating
+        elif review_date == 'oldest':
+            rating.sort(key=lambda x: x['reviewCreatedOnDate'])
+            sorted_dates += rating
+
+    return sorted_dates
