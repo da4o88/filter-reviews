@@ -12,5 +12,5 @@ Use the package manager pip to install django and jinja2.
 pip install -r requirements.txt
 ```
 
-
-
+## You need JSON file !Important
+You need to have directory in root app with name data and contain the json file.
