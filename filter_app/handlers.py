@@ -23,12 +23,18 @@ def sortByText(data_list, text='no', min_rating=1):
     return new_list
 
 
-def sortByRating(lists, rating):
-    for i in range(len(lists)):
+def sortByRating(lists, rating, text):
+    if text == 'yes':
+        for i in range(len(lists)):
+            if rating == 'highest':
+                lists[i] = sorted(lists[i], reverse=True, key=lambda x: x['rating'])
+            elif rating == 'lowest':
+                lists[i] = sorted(lists[i], key=lambda x: x['rating'])
+    elif text == 'no':
         if rating == 'highest':
-            lists[i] = sorted(lists[i], reverse=True, key=lambda x: x['rating'])
+            lists = sorted(lists, reverse=True, key=lambda x: x['rating'])
         elif rating == 'lowest':
-            lists[i] = sorted(lists[i], key=lambda x: x['rating'])
+            lists = sorted(lists, key=lambda x: x['rating'])
 
     return lists
 
