@@ -15,7 +15,7 @@ def sortByText(data_list, text='no', min_rating=1):
                 no_text_list.append(data)
 
     if text == 'no':
-        new_list = data_list
+        new_list = no_text_list
     else:
         new_list.append(text_list)
         new_list.append(no_text_list)
