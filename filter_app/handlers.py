@@ -1,4 +1,10 @@
 def sortByText(data_list, text='no', min_rating=1):
+    """
+    :param data_list: list
+    :param text: str
+    :param min_rating: int
+    :return: list
+    """
     no_text_list = []
     text_list = []
     new_list = []
@@ -24,6 +30,12 @@ def sortByText(data_list, text='no', min_rating=1):
 
 
 def sortByRating(lists, rating, text):
+    """
+    :param lists: list
+    :param rating: str
+    :param text: str
+    :return: list
+    """
     if text == 'yes':
         for i in range(len(lists)):
             if rating == 'highest':
@@ -40,7 +52,13 @@ def sortByRating(lists, rating, text):
 
 
 def sortByDate(dates, text, rating, review_date):
-
+    """
+    :param dates: list
+    :param text: str
+    :param rating: str
+    :param review_date: str
+    :return: list
+    """
     if text == 'yes':
         for i in range(len(dates)):
             dates[i] = dateSorting(dates[i], rating, review_date)
@@ -51,6 +69,12 @@ def sortByDate(dates, text, rating, review_date):
 
 
 def dateSorting(reviews, ratings, review_date):
+    """
+    :param reviews: list
+    :param ratings: str
+    :param review_date: str
+    :return: list
+    """
     rating_5 = []
     rating_4 = []
     rating_3 = []
@@ -71,7 +95,7 @@ def dateSorting(reviews, ratings, review_date):
         elif data['rating'] == 1:
             rating_1.append(data)
 
-    # Change order of list from highest to lowest
+    # Change order of list from lowest to highest
     if ratings == 'lowest':
         sort_dates.reverse()
 
